@@ -1,8 +1,10 @@
 // CRUD create, read, update and delete
 
-const mongodb = require('mongodb');
+// const mongodb = require('mongodb');
+// const MongoClient = mongodb.MongoClient;
+// const ObjectID = mongodb.ObjectID;
 
-const MongoClient = mongodb.MongoClient;
+const { MongoClient, ObjectID } = require('mongodb');
 
 const connectionURL = 'mongodb://127.0.0.1/27017';
 const databaseName = 'task-manager';
@@ -17,62 +19,42 @@ MongoClient.connect(
 		console.log('Connected correctly!');
 		const db = client.db(databaseName);
 
-		// db.collection('users').insertOne(
-		// 	{
-		// 		name: 'Akash',
-		// 		age: 23,
-		// 	},
-		// 	(error, result) => {
+		// db.collection('users').findOne(
+		// 	{ _id: new ObjectID('5fb063ef507dab9c9f630065') },
+		// 	(error, user) => {
 		// 		if (error) {
-		// 			return console.log('Unable to insert user');
+		// 			return console.log('Unable to fetch');
 		// 		}
 
-		// 		console.log(result);
+		// 		console.log(user);
 		// 	}
 		// );
 
-		// db.collection('users').insertMany(
-		// 	[
-		// 		{
-		// 			name: 'Jen',
-		// 			age: 28,
-		// 		},
-		// 		{
-		// 			name: 'Gunther',
-		// 			age: 27,
-		// 		},
-		// 	],
-		// 	(error, result) => {
-		// 		if (error) {
-		// 			return console.log('Unable to insert user');
-		// 		}
+		// 	db.collection('users')
+		// 		.find({ age: 28 })
+		// 		.toArray((error, users) => {
+		// 			if (error) {
+		// 				return console.log('Unable to fetch');
+		// 			}
+		// 			console.log(users);
+		// 		});
 
-		// 		console.log(result.ops);
-		// 	}
-		// );
+		db.collection('users').findOne(
+			{ _id: new ObjectID('5fb196224af30ac4efd43e3e') },
+			(error, user) => {
+				if (error) return console.log(error);
 
-		db.collection('tasks').insertMany(
-			[
-				{
-					description: 'This is for js project',
-					completed: true,
-				},
-				{
-					description: 'This is for react project',
-					completed: false,
-				},
-				{
-					description: 'This is for node project',
-					completed: true,
-				},
-			],
-			(error, result) => {
-				if (error) {
-					return console.log(error);
-				}
-
-				console.log(result.ops);
+				console.log(user);
 			}
 		);
+
+		db.collection('tasks')
+			.find({ completed: true })
+			.toArray((error, users) => {
+				if (error) return console.log(error);
+
+				users.forEach((user) => console.log(user));
+			});
 	}
 );
+// 5fb063ef507dab9c9f630065
