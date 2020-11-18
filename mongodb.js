@@ -39,22 +39,70 @@ MongoClient.connect(
 		// 			console.log(users);
 		// 		});
 
-		db.collection('users').findOne(
-			{ _id: new ObjectID('5fb196224af30ac4efd43e3e') },
-			(error, user) => {
-				if (error) return console.log(error);
+		// db.collection('users').findOne(
+		// 	{ _id: new ObjectID('5fb196224af30ac4efd43e3e') },
+		// 	(error, user) => {
+		// 		if (error) return console.log(error);
 
-				console.log(user);
-			}
-		);
+		// 		console.log(user);
+		// 	}
+		// );
+
+		// db.collection('tasks')
+		// 	.find({ completed: true })
+		// 	.toArray((error, users) => {
+		// 		if (error) return console.log(error);
+
+		// 		users.forEach((user) => console.log(user));
+		// 	});
+
+		//5fadab605d4501915edbd033
+
+		// db.collection('users')
+		// 	.updateOne(
+		// 		{
+		// 			_id: new ObjectID('5fadab605d4501915edbd033'),
+		// 		},
+		// 		{
+		// 			$inc: {
+		// 				age: 10,
+		// 			},
+		// 		}
+		// 	)
+		// 	.then((result) => {
+		// 		console.log(result);
+		// 	})
+		// 	.catch((error) => console.log(error));
+
+		// db.collection('tasks')
+		// 	.updateMany(
+		// 		{
+		// 			completed: false,
+		// 		},
+		// 		{
+		// 			$set: {
+		// 				completed: true,
+		// 			},
+		// 		}
+		// 	)
+		// 	.then((result) => {
+		// 		console.log(result);
+		// 	})
+		// 	.catch((error) => console.log(error));
+
+		// 	db.collection('users')
+		// 		.deleteMany({
+		// 			age: 27,
+		// 		})
+		// 		.then((result) => console.log(result))
+		// 		.catch((error) => console.log(error));
 
 		db.collection('tasks')
-			.find({ completed: true })
-			.toArray((error, users) => {
-				if (error) return console.log(error);
-
-				users.forEach((user) => console.log(user));
-			});
+			.deleteOne({
+				description: 'This is for node project',
+			})
+			.then((result) => console.log(result))
+			.catch((error) => console.log(error));
 	}
 );
 // 5fb063ef507dab9c9f630065
