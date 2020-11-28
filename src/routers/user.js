@@ -29,8 +29,33 @@ router.post('/users/login', async (req, res) => {
 	}
 });
 
+router.post('/users/logout', auth, async (req, res) => {
+	try {
+		req.user.tokens = req.user.tokens.filter((token) => {
+			console.log(token.token, req.token, token.token !== req.token);
+			return token.token !== req.token;
+		});
+
+		await req.user.save();
+
+		res.send('Logged out from current device');
+	} catch (error) {
+		res.status(500).send();
+	}
+});
+
+router.post('/users/logoutAll', auth, async (req, res) => {
+	try {
+		req.user.tokens = [];
+		await req.user.save();
+		res.send('Logged out from all device');
+	} catch (error) {
+		res.status(500).send();
+	}
+});
+
 router.get('/users/me', auth, async (req, res) => {
-	res.send(req.users);
+	res.send(req.user);
 });
 
 router.get('/users/:id', async (req, res) => {
