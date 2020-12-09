@@ -16,6 +16,19 @@ const sendWelcomeEmail = (email, name) => {
 		.catch((err) => console.log('Error: ', err));
 };
 
+const sendCancelEmail = (email, name) => {
+	sgMail
+		.send({
+			to: email,
+			from: process.env.FROM_EMAIL,
+			subject: 'Goodbye! :(, Is there anything we could have done?',
+			text: `We hope to see you again, ${name}`,
+		})
+		.then((res) => console.log('Email sent'))
+		.catch((err) => console.log('Error: ', err));
+};
+
 module.exports = {
 	sendWelcomeEmail,
+	sendCancelEmail,
 };
