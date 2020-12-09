@@ -22,16 +22,21 @@ router.post('/tasks', auth, async (req, res) => {
 
 router.get('/tasks', auth, async (req, res) => {
 	let completed;
-	if (req.query.completed) {
+	const pagination = {};
+	if (req.query.completed)
 		completed = req.query.completed === 'true' ? true : false;
-	}
-	console.log(completed);
+	if (parseInt(req.query.limit)) pagination.limit = parseInt(req.query.limit);
+	if (parseInt(req.query.skip)) pagination.skip = parseInt(req.query.skip);
 
 	try {
-		const tasks = await Task.find({
-			owner: req.user._id,
-			...(completed === undefined ? false : completed),
-		});
+		const tasks = await Task.find(
+			{
+				owner: req.user._id,
+				...(completed === undefined ? false : completed),
+			},
+			null,
+			{ ...pagination }
+		);
 		res.send(tasks);
 	} catch (error) {
 		res.status(500).send(error);
