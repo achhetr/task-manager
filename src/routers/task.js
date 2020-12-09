@@ -21,22 +21,23 @@ router.post('/tasks', auth, async (req, res) => {
 });
 
 router.get('/tasks', auth, async (req, res) => {
-	let completed;
-	const pagination = {};
-	if (req.query.completed)
-		completed = req.query.completed === 'true' ? true : false;
-	if (parseInt(req.query.limit)) pagination.limit = parseInt(req.query.limit);
-	if (parseInt(req.query.skip)) pagination.skip = parseInt(req.query.skip);
+	let limit, skip;
+	const findTask = {
+		owner: req.user._id,
+	};
+
+	if (req.query.completed) {
+		findTask.completed = req.query.completed === 'true';
+	}
+	if (parseInt(req.query.limit)) {
+		limit = parseInt(req.query.limit);
+	}
+	if (parseInt(req.query.skip)) {
+		skip = parseInt(req.query.skip);
+	}
 
 	try {
-		const tasks = await Task.find(
-			{
-				owner: req.user._id,
-				...(completed === undefined ? false : completed),
-			},
-			null,
-			{ ...pagination }
-		);
+		const tasks = await Task.find(findTask).limit(limit).skip(skip);
 		res.send(tasks);
 	} catch (error) {
 		res.status(500).send(error);
@@ -49,7 +50,6 @@ router.get('/tasks/:id', auth, async (req, res) => {
 			_id: req.params.id,
 			owner: req.user._id,
 		});
-		console.log(task);
 		if (!task) return res.status(404).send('Task not found');
 
 		res.send(task);
