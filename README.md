@@ -66,4 +66,4 @@ Pull requests are welcome :)
 
 ## License
 
-MIT
+[MIT](https://github.com/achhetr/task-manager/blob/master/License.txt)
