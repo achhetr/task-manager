@@ -1,6 +1,6 @@
 # Task Manager
 
-This is a Node application which serves as a backend for a 'Task Manager App'
+This is a Node application which serves as a backend for a 'Task Manager App' from Heroku server.
 
 ## Installation
 
@@ -38,7 +38,7 @@ use [link](http://localhost:3000)
 
 ### Production
 
-To run production ready project
+To run production ready heroku project
 
 use [link](https://akash-taskmanager.herokuapp.com)
 
