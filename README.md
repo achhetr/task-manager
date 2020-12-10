@@ -12,8 +12,20 @@ git clone https://github.com/achhetr/task-manager.git ./
 
 ## Usage
 
+### Development
+
 ```
 npm install
+```
+
+create local environment file and set
+
+```
+SENDGRID_API_KEY='Your send grid API key'
+FROM_EMAIL='Your verified email in send grid'
+PORT=3000 || 'or any other port'
+JWT_SECRET='Any secret key'
+MONGODB_URL='Your local mongodb url | url from mongodb atlas'
 ```
 
 To run project locally using nodemon
@@ -22,7 +34,13 @@ To run project locally using nodemon
 npm run dev
 ```
 
-Go to [link](http://localhost:3000/)
+use [link](http://localhost:3000)
+
+### Production
+
+To run production ready project
+
+use [link](https://akash-taskmanager.herokuapp.com)
 
 ## Contributing
 
