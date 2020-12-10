@@ -2,6 +2,24 @@
 
 This is a Node application which serves as a backend for a 'Task Manager App' from Heroku server.
 
+Key feature includes -
+
+-   Create your account
+
+-   Receive an email confirmation for account creation greeting
+
+-   Authentication and Authorisation
+
+-   Create, manage, update, delete tasks
+
+-   Upload profile picture
+
+-   Cascade delete users and all the task
+
+-   Receive an email after closing your account
+
+I love building this project, if you have any suggestions please pass it on :)
+
 ## Installation
 
 Download the zip or run following command
